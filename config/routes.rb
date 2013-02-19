@@ -1,8 +1,11 @@
 UserTodoList::Application.routes.draw do
   resources :users
 
-
-  match "/" => "users#index"
+  resources :sessions, only: [:new, :create, :destroy]
+  match '/signup' => 'users#new'
+  match '/signin' => 'sessions#new'
+  match '/sessions' => 'sessions#new'
+  match '/sessions/create/' => 'sessions#create'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
