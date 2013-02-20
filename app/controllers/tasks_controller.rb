@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
-  def user_tasks
-    @user = User.find(3)
+  def create
+    @task = Task.new
   end
 
 end

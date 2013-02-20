@@ -2,16 +2,16 @@
 
 
 <% if flash[:error] %>
-    <div class="notice"><%= flash[:error] %></div>
+    <div><%= flash[:error] %></div>
 <% end %>
 
 <% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice] %></div>
+    <div><b></b><%= flash[:notice] %></b></div>
 <% end %>
 <!--<div class="alert alert-error">Invalid...</div> -->
 
-<div class="row">
-  <div class="span6 offset3">
+<div>
+  <div>
     <%= form_for(:session, url: sessions_path) do |f| %>
 
         <%= f.label :email %>
@@ -20,7 +20,7 @@
         <%= f.label :password %>
         <%= f.password_field :password %>
 
-        <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+        <%= f.submit "Sign in"%>
     <% end %>
 
     <p>New user? <%= link_to "Sign up now!", signup_path %></p>

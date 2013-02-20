@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   before_filter :signed_in_user, only: [:show]
+  before_filter :correct_user,   only: [:show]
 
 
   def index
@@ -27,7 +28,7 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
-
+    @user = User.new
   end
 
   # GET /users/1/edit
@@ -42,6 +43,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        sign_in(@user)
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
@@ -79,7 +81,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def user_tasks
+  def create_task
     @user = User.find(3)
   end
 
@@ -87,7 +89,7 @@ class UsersController < ApplicationController
 
   def signed_in_user
     if !signed_in?
-      flash.now[:notice] = 'Please sign in'
+      #flash.now[:notice] = 'Please sign in'
       redirect_to signin_url
     end
   end

@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
 
   has_many :tasks
 
-
   private
 
   def create_remember_token

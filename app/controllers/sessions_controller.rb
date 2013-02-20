@@ -1,5 +1,8 @@
 class SessionsController < ApplicationController
   def new
+    if signed_in?
+      redirect_to current_user
+    end
   end
 
   def create
@@ -9,12 +12,15 @@ class SessionsController < ApplicationController
       redirect_to user
       #redirect_to user_path(user)
     else
-      flash.now[:error] = 'Invalid email/password combination' # Not quite right!
+      flash.now[:error] = 'Invalid email/password combination'
       render 'new'
     end
 
   end
 
   def destroy
+    sign_out
+    flash.now[:error] = 'You have signed out'
+    render 'new'
   end
 end
