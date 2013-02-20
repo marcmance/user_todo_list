@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
+  before_filter :signed_in_user, only: [:show]
+
+
   def index
     @users = User.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
@@ -12,6 +14,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   # GET /users/1.json
+
   def show
     @user = User.find(params[:id])
 
@@ -77,6 +80,20 @@ class UsersController < ApplicationController
   end
 
   def user_tasks
-    @user.find(3)
+    @user = User.find(3)
+  end
+
+  private
+
+  def signed_in_user
+    if !signed_in?
+      flash.now[:notice] = 'Please sign in'
+      redirect_to signin_url
+    end
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(signin_url) unless current_user?(@user)
   end
 end
