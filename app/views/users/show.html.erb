@@ -11,24 +11,9 @@
 <% end %>
 
 <p>Create a task:</p>
-<%= form_for(@task) do |f| %>
 
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-    <br/>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-    <br/>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-    <br/>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-    <br/>
-    <%= f.label :password_confirmation, "Confirmation" %>
-    <%= f.password_field :password_confirmation %>
-    <br/>
-    <%= f.submit "Create user" %>
+<%= form_for(@user) do |f| %>
+   <!--Form for task -->
 <% end %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

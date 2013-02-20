@@ -1,0 +1,18 @@
+Forgot password. Please enter your email <br/>
+
+
+<%= form_for(:forgot_password, :url => forgot_password_path, :host => "http://localhost") do |f| %>
+
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+
+
+    <%= f.submit "submit"%>
+<% end %>
+
+<% if flash[:error] %>
+    <div><%= flash[:error] %></div>
+<% end %>
+
+
+<%= link_to 'Back', signin_path %>

@@ -1,13 +1,14 @@
 UserTodoList::Application.routes.draw do
   resources :users
   resources :tasks, only: [:new,:create,:destroy]
+  resources :forgot_password, only: [:create]
 
   resources :sessions, only: [:new, :create, :destroy]
   root :to => 'sessions#new'
   match '/signup' => 'users#new'
   match '/signin' => 'sessions#new'
   match '/signout' => 'sessions#destroy'
-  match '/sessions' => 'sessions#new'
+  match '/forgot_password' => 'forgot_password#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -12,7 +12,7 @@
 
 <div>
   <div>
-    <%= form_for(:session, url: sessions_path) do |f| %>
+    <%= form_for(:session, :url => sessions_path) do |f| %>
 
         <%= f.label :email %>
         <%= f.text_field :email %>
@@ -24,5 +24,6 @@
     <% end %>
 
     <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+    <p>Forgot password? <%= link_to "Forgot password!", forgot_password_path %></p>
   </div>
 </div>
