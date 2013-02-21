@@ -6,7 +6,11 @@
 <% end %>
 
 <% if flash[:notice] %>
-    <div><b></b><%= flash[:notice] %></b></div>
+    <div><b><%= flash[:notice] %></b></div>
+<% end %>
+
+<% if flash[:success] %>
+    <div><b><%= flash[:success] %></b></div>
 <% end %>
 <!--<div class="alert alert-error">Invalid...</div> -->
 

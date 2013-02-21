@@ -1,5 +1,8 @@
+<% if flash[:error] %>
+    <div><b><%= flash[:error] %></b></div>
+<% end %>
+<br/>
 Forgot password. Please enter your email <br/>
-
 
 <%= form_for(:forgot_password, :url => forgot_password_path, :host => "http://localhost") do |f| %>
 
@@ -15,4 +18,5 @@ Forgot password. Please enter your email <br/>
 <% end %>
 
 
+<%= @test %>
 <%= link_to 'Back', signin_path %>

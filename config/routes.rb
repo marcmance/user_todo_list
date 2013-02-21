@@ -9,6 +9,8 @@ UserTodoList::Application.routes.draw do
   match '/signin' => 'sessions#new'
   match '/signout' => 'sessions#destroy'
   match '/forgot_password' => 'forgot_password#index'
+  match '/change_password' => 'forgot_password#change_password', :via => :post
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
