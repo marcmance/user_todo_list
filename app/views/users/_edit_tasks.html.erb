@@ -1,0 +1,16 @@
+<%= form_for(:task, :url => update_tasks_path, :method => :get) do |f| %>
+<% @user.tasks.not_completed.each do |t| %>
+
+    <tr>
+      <td>
+        <%= f.text_field t.id, :value => t.description %>
+      </td>
+    </tr>
+ <%end%>
+<tr>
+  <td>
+    <%= f.hidden_field :hidden, :value =>  @user.id %>
+    <%= f.submit "Save changes"%>
+  </td>
+</tr>
+<%end%>

@@ -10,8 +10,17 @@
         <th align="left" width="300">Task</th>
       </tr>
 
-      <%= render 'users/task' %>
-     </table>
+      <% if @edit%>
+
+          <%= render 'users/edit_tasks' %>
+
+          </table>
+      <% else %>
+          <%= render 'users/task' %>
+          </table>
+          <%=link_to "Edit Tasks", user_path(:edit=> "true")%>
+      <% end %>
+
 <%else %>
   <p> No tasks. </p>
 <% end %>
@@ -25,7 +34,6 @@
       <tr>
         <th>Task description</th>
       </tr>
-
       <%= render 'users/completed_task' %>
     </table>
 <%else %>
@@ -36,7 +44,7 @@
 
 <p>Create a task:</p>
 
-<%= form_for(:task, :url => user_create_task_path) do |f| %>
+<%= form_for(:task, :url => tasks_path) do |f| %>
     <%= f.text_field :description%>
     <%= f.hidden_field :hidden, :value => @user.id%>
     <br/>
@@ -46,5 +54,3 @@
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Sign out', signout_path %>   <br/>
-
-<%= @test %>

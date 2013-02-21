@@ -20,6 +20,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @task = Task.new
 
+    params[:edit] == "true" ? @edit = true :
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
@@ -82,12 +84,12 @@ class UsersController < ApplicationController
     end
   end
 
-  def create_task
-    user = User.find(params[:task][:hidden])
-    task = Task.new(:user_id => params[:task][:hidden], :description => params[:task][:description])
-    task.save
-    redirect_to user
-  end
+  #def create_task
+   # user = User.find(params[:task][:hidden])
+    #task = Task.new(:user_id => params[:task][:hidden], :description => params[:task][:description])
+    #task.save
+    #redirect_to user
+  #end
 
   private
 
