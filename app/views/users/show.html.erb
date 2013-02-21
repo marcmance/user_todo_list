@@ -4,17 +4,47 @@
 
 <p><b>Task Lists</b></p>
 
-<% if @user.tasks.any? %>
+<% if @user.tasks.not_completed.any?  %>
+    <table>
+      <tr>
+        <th align="left" width="300">Task</th>
+      </tr>
 
+      <%= render 'users/task' %>
+     </table>
 <%else %>
   <p> No tasks. </p>
 <% end %>
 
-<p>Create a task:</p>
+<hr>
 
-<%= form_for(@user) do |f| %>
-   <!--Form for task -->
+<p><b>Finished</b></p>
+
+<% if @user.tasks.completed.any?  %>
+    <table>
+      <tr>
+        <th>Task description</th>
+      </tr>
+
+      <%= render 'users/completed_task' %>
+    </table>
+<%else %>
+    <p> No tasks. </p>
 <% end %>
 
+<hr>
+
+<p>Create a task:</p>
+
+<%= form_for(:task, :url => user_create_task_path) do |f| %>
+    <%= f.text_field :description%>
+    <%= f.hidden_field :hidden, :value => @user.id%>
+    <br/>
+    <%= f.submit "Submit"%> <br/>
+<% end %>
+
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Sign out', signout_path %>
+<%= link_to 'Sign out', signout_path %>   <br/>
+
+<%= @test %>

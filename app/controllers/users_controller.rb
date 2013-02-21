@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @task = Task.new
 
     respond_to do |format|
       format.html # show.html.erb
@@ -82,7 +83,10 @@ class UsersController < ApplicationController
   end
 
   def create_task
-    @user = User.find(3)
+    user = User.find(params[:task][:hidden])
+    task = Task.new(:user_id => params[:task][:hidden], :description => params[:task][:description])
+    task.save
+    redirect_to user
   end
 
   private
