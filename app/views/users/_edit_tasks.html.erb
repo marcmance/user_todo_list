@@ -1,4 +1,4 @@
-<%= form_for(:task, :url => update_tasks_path, :method => :get) do |f| %>
+<%= form_for(:task, :url => update_tasks_path, :method => :put) do |f| %>
 <% @user.tasks.not_completed.each do |t| %>
 
     <tr>

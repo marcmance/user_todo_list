@@ -11,7 +11,8 @@ UserTodoList::Application.routes.draw do
   match '/forgot_password' => 'forgot_password#index'
   match '/change_password' => 'forgot_password#change_password', :via => :post
   #match '/user/create_task' => 'users#create_task', :via => :post
-  match '/update_tasks' => 'tasks#update_all_tasks', :via => :get
+  match '/update_tasks' => 'tasks#update_all_tasks', :via => :put
+  match '/uncomplete_task/:id' => 'tasks#uncomplete_task', :via => :put, :as => 'uncomplete_task'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

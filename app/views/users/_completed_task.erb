@@ -4,7 +4,7 @@
         <%= t.description %>
       </td>
       <td>
-        <%=link_to "Delete", task_path(t), :method => :delete%>
+        <%=link_to "Not Complete", uncomplete_task_path(t), :method => :put%> | <%=link_to "Delete", task_path(t), :method => :delete%>
       </td>
 
     </tr>
