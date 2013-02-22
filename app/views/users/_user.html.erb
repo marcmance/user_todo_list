@@ -1,8 +1,22 @@
 <tr>
+  <td><%= user.id %></td>
   <td><%= user.first_name %></td>
   <td><%= user.last_name %></td>
   <td><%= user.email %></td>
+  <td><%= user.user_type %></td>
+  <td><%= user.new_password_counter %></td>
   <td><%= link_to 'Show', user %></td>
   <td><%= link_to 'Edit', edit_user_path(user) %></td>
   <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <td>
+     <%if user.admin? %>
+        <% if user.id != 1 && user.id != current_user.id %>
+            <%= link_to 'Remove Admin', remove_admin_path(user), :method =>:put %>
+        <% else %>
+            --
+        <%end%>
+     <%else%>
+        <%= link_to 'Make Admin', make_admin_path(user), :method =>:put %>
+    <%end%>
+  </td>
 </tr>

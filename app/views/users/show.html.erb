@@ -1,8 +1,4 @@
-<p>
-  <b></b><%= "Welcome #{@user.first_name} #{@user.last_name}!"    %> </b>
-</p>
-
-<p><b>Task Lists</b></p>
+<b>Task Lists</b>
 
 <% if @user.tasks.not_completed.any?  %>
     <table>
@@ -52,5 +48,3 @@
 <% end %>
 
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Sign out', signout_path %>   <br/>

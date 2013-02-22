@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>UserTodoList</title>
+  <title>User To Do List</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+<div id="header">
+ <% if signed_in? %>
+  Welcome <b><%= link_to "#{current_user.first_name} #{current_user.last_name}!", user_path(current_user) %>  </b>
+  <% if current_user.admin? %>
+      <%= "[#{current_user.user_type}]" %>  |
+      <%= link_to 'Admin Panel', users_path %>  |
+  <%end%>
+      <%= link_to 'Edit', edit_user_path(current_user) %> |
+      <%= link_to 'Sign out', signout_path %>
+ <%else%>
+
+ <%end%>
+</div>
+
+<br/>
 <%= yield %>
 
 </body>

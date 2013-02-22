@@ -11,3 +11,14 @@
  *= require_self
  *= require_tree .
  */
+
+div#header {
+    background-color:#D1E3ED;
+    top:0px;
+    margin-top:0px;
+    margin-right:0px;
+    margin-left:0px;
+    margin-bottom:0px;
+    border-top:0px;
+
+}

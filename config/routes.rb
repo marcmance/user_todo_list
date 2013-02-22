@@ -5,12 +5,16 @@ UserTodoList::Application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
   root :to => 'sessions#new'
-  match '/signup' => 'users#new'
   match '/signin' => 'sessions#new'
   match '/signout' => 'sessions#destroy'
+
+  #users
+  match '/signup' => 'users#new'
+  match '/make_admin/:id' => 'users#make_admin', :via => :put, :as => 'make_admin'
+  match '/remove_admin/:id' => 'users#remove_admin', :via => :put, :as => 'remove_admin'
+
   match '/forgot_password' => 'forgot_password#index'
   match '/change_password' => 'forgot_password#change_password', :via => :post
-  #match '/user/create_task' => 'users#create_task', :via => :post
   match '/update_tasks' => 'tasks#update_all_tasks', :via => :put
   match '/uncomplete_task/:id' => 'tasks#uncomplete_task', :via => :put, :as => 'uncomplete_task'
 

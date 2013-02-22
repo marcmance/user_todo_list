@@ -1,20 +1,16 @@
 class UsersController < ApplicationController
-  # GET /users
-  # GET /users.json
+
   before_filter :signed_in_user, only: [:show]
   before_filter :correct_user,   only: [:show]
-
+  before_filter :admin_user, only: [:index,:make_admin,:remove_admin]
 
   def index
-    @users = User.all
+    @users = User.order("id").all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
     end
   end
-
-  # GET /users/1
-  # GET /users/1.json
 
   def show
     @user = User.find(params[:id])
@@ -28,19 +24,14 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/new
-  # GET /users/new.json
   def new
     @user = User.new
   end
 
-  # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
   end
 
-  # POST /users
-  # POST /users.json
   def create
     @user = User.new(params[:user])
 
@@ -56,8 +47,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # PUT /users/1
-  # PUT /users/1.json
   def update
     @user = User.find(params[:id])
 
@@ -72,8 +61,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id])
     @user.destroy
@@ -84,24 +71,32 @@ class UsersController < ApplicationController
     end
   end
 
-  #def create_task
-   # user = User.find(params[:task][:hidden])
-    #task = Task.new(:user_id => params[:task][:hidden], :description => params[:task][:description])
-    #task.save
-    #redirect_to user
-  #end
+  def make_admin
+    @user = User.find(params[:id])
+    @user.update_attribute(:user_type, "admin")
+    redirect_to users_path
+  end
+
+  def remove_admin
+    @user = User.find(params[:id])
+    @user.update_attribute(:user_type, "standard")
+    redirect_to users_path
+  end
 
   private
 
   def signed_in_user
     if !signed_in?
-      #flash.now[:notice] = 'Please sign in'
       redirect_to signin_url
     end
   end
 
   def correct_user
     @user = User.find(params[:id])
-    redirect_to(signin_url) unless current_user?(@user)
+    redirect_to(signin_url) unless current_user?(@user) || current_user.admin?
+  end
+
+  def admin_user
+    redirect_to(signin_url) unless current_user.admin?
   end
 end

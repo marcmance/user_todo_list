@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :first_name, :last_name, :password, :password_confirmation
+  attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :user_type
   has_secure_password
 
   before_save { |user| user.email = email.downcase }
@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   has_many :tasks
+
+  def admin?
+    self.user_type == "admin" ? true : false
+  end
 
   private
 
