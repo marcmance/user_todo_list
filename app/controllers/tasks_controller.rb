@@ -23,20 +23,13 @@ class TasksController < ApplicationController
   def update_all_tasks
     @tasks =  User.find(params[:task][:hidden]).tasks.not_completed
 
-    params[:task].each do |p|
-      if @tasks.exists?(:id => p)
-        t = @tasks.find(p)
+    params[:task].each do |k,v|
+      if @tasks.exists?(:id => k)
+        t = @tasks.find(k)
+        t.update_attributes(:description => v)
       end
     end
-
-
-    #@tasks.each do |t|
-
-      #t.update_attributes(:description => params[:taskf]["task_[#{t.id}]"])
-    #end
     redirect_to current_user
   end
-
-
 
 end

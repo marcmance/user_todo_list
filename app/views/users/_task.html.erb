@@ -1,7 +1,7 @@
 <% @user.tasks.not_completed.each do |t| %>
 <tr>
   <td>
-    <%=t.id %><%= t.description %>
+    <%= t.description %>
   </td>
   <td>
     <%=link_to "Complete", task_path(t), :method => :put%> | <%=link_to "Delete", task_path(t), :method => :delete%>
