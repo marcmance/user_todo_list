@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  extend ActiveSupport::Memoizable
   attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :user_type
   has_secure_password
 
@@ -19,10 +20,16 @@ class User < ActiveRecord::Base
     self.user_type == "admin" ? true : false
   end
 
+  def completed_tasks
+    tasks.completed
+  end
+  memoize :completed_tasks
+
   private
 
   def create_remember_token
     self.remember_token = SecureRandom.urlsafe_base64
   end
+
 
 end
