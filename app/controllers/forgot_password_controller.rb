@@ -2,7 +2,7 @@ class ForgotPasswordController < ApplicationController
   def index
     if !params[:h].nil? && !params[:user_id].nil? && !User.find(params[:user_id]).nil?
       if params[:h] == forgot_password_code(User.find(params[:user_id]))
-        @user_id = params[:user_id];
+        @user_id = params[:user_id]
         render 'new_password'
       else
         flash.now[:error] = 'Invalid or expired forgot password url'

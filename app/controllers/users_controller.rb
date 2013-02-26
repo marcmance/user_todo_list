@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
-  before_filter :signed_in_user, only: [:show]
+  before_filter :signed_in_user, only: [:show, :index]
   before_filter :correct_user,   only: [:show]
-  before_filter :admin_user, only: [:index,:make_admin,:remove_admin]
+  before_filter :admin_user, only: [:index, :make_admin,:remove_admin]
 
   def index
     @users = User.order("id").all
