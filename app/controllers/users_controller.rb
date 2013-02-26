@@ -16,6 +16,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @task = Task.new
 
+    task_test =  @user.tasks
+
+
+
+    @completed = task_test.completed
+    @not_completed = task_test.not_completed
+
+
+
     params[:edit] == "true" ? @edit = true :
 
     respond_to do |format|

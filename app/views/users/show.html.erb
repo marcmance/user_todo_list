@@ -1,40 +1,24 @@
 <b>Task Lists</b>
 
-<% if @user.tasks.not_completed.any?  %>
-    <table>
-      <tr>
-        <th align="left" width="300">Task</th>
-      </tr>
 
-      <% if @edit%>
-
-          <%= render 'users/edit_tasks' %>
-
-          </table>
-      <% else %>
-          <%= render 'users/task' %>
-          </table>
-          <%=link_to "Edit Tasks", user_path(:edit=> "true")%>
-      <% end %>
-
-<%else %>
-  <p> No tasks. </p>
+<table>
+<% @completed.each do |t| %>
+    <tr>
+      <td>
+        <%= t.description %>
+      </td>
+    </tr>
 <% end %>
 
-<hr>
-
-<p><b>Finished</b></p>
-
-<% if @user.tasks.completed.any?  %>
-    <table>
+  <% @not_completed.each do |t| %>
       <tr>
-        <th align="left" width="300">Task description</th>
+        <td>
+          <%= t.description %>
+        </td>
       </tr>
-      <%= render 'users/completed_task' %>
-    </table>
-<%else %>
-    <p> No tasks. </p>
-<% end %>
+  <% end %>
+</table>
+
 
 <hr>
 
